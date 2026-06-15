@@ -1,4 +1,4 @@
-# Sentiment Recognition — README (Ayadi Raed)
+# Sentiment Recognition — README
 
 ## Project overview
 This repository demonstrates an MLOps-style deployment that serves a pre-trained sentiment/emotion model behind an Nginx API gateway. The deployment is containerized with Docker Compose and includes two API versions (v1 and v2), HTTPS via self-signed certificates, basic-auth protection, rate limiting, A/B routing by header, and monitoring (Prometheus + Grafana).
