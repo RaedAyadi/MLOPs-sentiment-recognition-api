@@ -10,42 +10,7 @@ This repository demonstrates an MLOps-style deployment that serves a pre-trained
 - nginx_exporter + Prometheus + Grafana: monitoring stack.
 - model: pre-trained model stored as `model/model.joblib` loaded by each API.
 
-```mermaid
-graph TD
-    subgraph "User"
-        U[Client] -->|HTTPS Request| N
-    end
-
-    subgraph "Containerized Infrastructure (Docker)"
-        N[Nginx Gateway] -->|Load Balancing| V1
-        N -->|"A/B Test (Header)"| V2
-
-        subgraph "API v1 (Scaled)"
-            V1[Upstream: api-v1]
-            V1_1[Replica 1]
-            V1_2[Replica 2]
-            V1_3[Replica 3]
-            V1 --- V1_1
-            V1 --- V1_2
-            V1 --- V1_3
-        end
-
-        subgraph "API v2 (Debug)"
-            V2[Upstream: api-v2]
-        end
-
-        subgraph "Monitoring Stack"
-            N -->|/nginx_status| NE[Nginx Exporter]
-            NE -->|Metrics| P[Prometheus]
-            P -->|Data Source| G[Grafana]
-            U_Grafana[Admin] -->|View Dashboards| G
-        end
-    end
-
-    style N fill:#269539,stroke:#333,stroke-width:2px,color:#fff
-    style G fill:#F46800,stroke:#333,stroke-width:2px,color:#fff
-    style P fill:#E6522C,stroke:#333,stroke-width:2px,color:#fff
-```
+<img width="2752" height="1536" alt="High-Availability_Traffic_and_Observability_Flow" src="https://github.com/user-attachments/assets/d3c9ba5a-c29a-4275-b15d-4e97b27e94a0" />
 
 ## Where to find key files
 - Docker Compose orchestration: `docker-compose.yml`
